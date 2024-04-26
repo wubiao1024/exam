@@ -1,0 +1,41 @@
+server:
+  port: 8001
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    #    url: jdbc:mysql://localhost:3306/exam?serverTimezone=GMT%2b8&character=utf-8&zeroDateTimeBehavior=convertToNull
+    url: jdbc:mysql://localhost:3306/exam
+    username: root
+    password: abcdefg
+  data:
+    redis:
+      host: localhost
+      port: 6379
+      password: abcdefg
+      connect-timeout: 3000
+#  mvc:
+#    pathmatch:
+#      matching-strategy: ant_path_matcher
+#      和配置文件一起
+springdoc:
+  swagger-ui:
+    path: /swagger-ui
+
+logging:
+  level:
+    com.exam: debug  #配置项目的日志级别为debug。
+#actable:
+#  table:
+#    auto: add #none add create
+#  model:
+#    pack: com.exam.entity
+#  database:
+#    type: mysql
+mybatis-plus:
+  # 修改 mybatis 的 DefaultEnumTypeHandler
+  configuration:
+    default-enum-type-handler: com.baomidou.mybatisplus.core.handlers.MybatisEnumTypeHandler
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl # 日志
+
+
+
