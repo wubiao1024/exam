@@ -73,6 +73,11 @@ public class User implements Serializable {
     private String email;
 
     /**
+     * 用户登录时候的身份 currentRole STUDENT TEACHER ADMIN
+     */
+    private String currentRole;
+
+    /**
      * 0 没有删除 1 删除
      */
     @TableField("is_deleted")

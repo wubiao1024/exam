@@ -21,6 +21,12 @@ public class UserController {
     public Result<?> login(@RequestBody LoginUserDTO loginUserDTO) {
         User user = new User();
         BeanUtils.copyProperties(loginUserDTO, user);
+        if(loginUserDTO.getRole() == null){
+            return Result.fail("请选择身份");
+        }
+
+        // user设置当前的登录的身份
+        user.setCurrentRole(loginUserDTO.getRole());
         // 登录
         return userService.login(user);
     }

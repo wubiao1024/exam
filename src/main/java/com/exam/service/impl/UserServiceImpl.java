@@ -1,6 +1,7 @@
 package com.exam.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.exam.POJO.BO.RoleBO;
@@ -71,15 +72,12 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
         } catch (AuthenticationException e) {
             // 认证失败
             System.out.println(e.getLocalizedMessage());
-//            System.out.println("用户登录认证失败");
             return Result.fail("用户名或密码错误");
         }
 
         // 如果认证通过  把认证信息存入SecurityContextHolder
         SecurityContextHolder.getContext().setAuthentication(authenticate);
 
-
-        // 获取人造毛的用户信息
         LoginUser loginUser = (LoginUser) authenticate.getPrincipal();
 
         //使用用户id 生成 token 存入redis 并返回
@@ -88,6 +86,11 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
 
         // 存入Redis
         redisCache.setCacheObject("login:" + id.toString(), loginUser);
+        // 数据库更新用户当前的身份信息
+        userMapper.update(new LambdaUpdateWrapper<User>()
+                .set(User::getCurrentRole,user.getCurrentRole())
+                .eq(User::getId, id));
+
 
         // 返回
         HashMap<String, String> map = new HashMap<>();
@@ -408,6 +411,11 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
     public void logOut(){
         // 退出登录
         LoginUser loginUser = (LoginUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        // 清除用户在表中的身份信息
+        userMapper.update(new LambdaUpdateWrapper<User>()
+                .eq(User::getId,loginUser.getUser().getId())
+                .set(User::getCurrentRole, null)
+        );
         // 删除redis
         redisCache.deleteObject("login:" + loginUser.getUser().getId());
         // 删除SecurityContextHolder 的信息

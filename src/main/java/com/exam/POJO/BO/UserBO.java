@@ -50,6 +50,11 @@ public class UserBO {
      */
     private String email;
 
+    /**
+     * 用户登录时候的身份 currentRole STUDENT TEACHER ADMIN
+     */
+    private String currentRole;
+
 }
 
 
