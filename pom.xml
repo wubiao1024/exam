@@ -62,11 +62,7 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
         </dependency>
-        <!--热加载-->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-devtools</artifactId>
-        </dependency>
+
         <!--引入jwt的依赖-->
         <dependency>
             <groupId>io.jsonwebtoken</groupId>
@@ -87,11 +83,7 @@
             <scope>provided</scope>
         </dependency>
 
-        <!--监控-->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-actuator</artifactId>
-        </dependency>
+
 
         <!--        遵循openapi规范的的一种实现-->
         <dependency>
@@ -100,7 +92,11 @@
             <version>2.3.0</version>
         </dependency>
 
-        <!--Entity-Utils-->
+        <!--aop-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-aop</artifactId>
+        </dependency>
 
     </dependencies>
 

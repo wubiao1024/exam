@@ -1,9 +1,14 @@
 package com.exam.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.exam.POJO.BO.QuestionBO;
 import com.exam.POJO.DTO.QuestionDTO;
+import com.exam.POJO.DTO.QuestionSelectDTO;
+import com.exam.POJO.DTO.QuestionUpdateDTO;
 import com.exam.common.Result;
 import com.exam.entity.Question;
+
+import java.util.List;
 
 /**
  * <p>
@@ -18,7 +23,12 @@ public interface IQuestionService extends IService<Question> {
 
     Result<?> deleteQuestionById(Long id);
 
-    Result<?> updateQuestion(Question question);
+    Result<?> updateQuestion(QuestionDTO question);
 
-    Result<?> selectAll(Integer pageNo, Integer pageSize);
+    Result<?> selectAll(QuestionSelectDTO questionSelectDTO);
+
+    Result<?> getQuestionInfoByIds(List<Long> questionIds, Boolean showAnswer);
+
+    Result<?> getQuestionInfoByExamRecordId(Long examRecordId,Boolean showCorrectAnswer);
+
 }

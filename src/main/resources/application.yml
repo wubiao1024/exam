@@ -6,12 +6,14 @@ spring:
     #    url: jdbc:mysql://localhost:3306/exam?serverTimezone=GMT%2b8&character=utf-8&zeroDateTimeBehavior=convertToNull
     url: jdbc:mysql://localhost:3306/exam
     username: root
-    password: abcdefg
+    password: abcdefg.
+  jackson:
+    default-property-inclusion: non_null
   data:
     redis:
       host: localhost
       port: 6379
-      password: abcdefg
+     # password: abcdefg.
       connect-timeout: 3000
 #  mvc:
 #    pathmatch:

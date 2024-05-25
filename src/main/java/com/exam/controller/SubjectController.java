@@ -4,6 +4,7 @@ package com.exam.controller;
 import com.exam.common.Result;
 import com.exam.service.impl.SubjectServiceImpl;
 import jakarta.annotation.Resource;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -23,6 +24,7 @@ public class SubjectController {
     SubjectServiceImpl subjectService;
 
     @GetMapping("/getAllSubject")
+    @PreAuthorize("hasAnyRole('TEACHER','STUDENT','ADMIN')")
     public Result<?> getAllSubject() {
         return subjectService.getAllSubject();
     }

@@ -35,6 +35,7 @@ public class Class implements Serializable {
     private Long id;
 
     private String className;
+    private String description;
 
     /**
      * 0 没有删除 1 删除

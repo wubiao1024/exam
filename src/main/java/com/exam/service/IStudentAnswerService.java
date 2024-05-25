@@ -1,5 +1,8 @@
 package com.exam.service;
 
+import com.exam.POJO.DTO.MarkQuestionDTO;
+import com.exam.POJO.DTO.SaveAnswerDTO;
+import com.exam.common.Result;
 import com.exam.entity.StudentAnswer;
 import com.baomidou.mybatisplus.extension.service.IService;
 
@@ -13,4 +16,11 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface IStudentAnswerService extends IService<StudentAnswer> {
 
+    Result<?> generatorRecords(Long id);
+
+    Result<?> savaAnswer(SaveAnswerDTO answerDTO);
+
+    Result<?> markQuestion(MarkQuestionDTO markQuestionDTO);
 }
+
+

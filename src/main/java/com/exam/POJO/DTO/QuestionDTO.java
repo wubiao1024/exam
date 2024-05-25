@@ -24,30 +24,47 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class QuestionDTO extends QuestionBO {
+
     /**
      * 问题 id
      * */
     @Schema(accessMode = Schema.AccessMode.READ_ONLY, title = "只有当更新的时候需要")
     private Long id;
 
-    /**
-     * 学科id
-     * */
-    private Long subjectId;
+
 
     /**
-     * 学科中文名
+     * 学科中文名.只读
      */
     @Schema(accessMode = Schema.AccessMode.READ_ONLY)
     private String subjectName;
 
 
     /**
+     * 学科英文名.只读
+     */
+    @Schema(accessMode = Schema.AccessMode.READ_ONLY)
+    private String subjectEnglishName;
+
+
+    /**
+     * 学科id
+     * */
+    private Long subjectId;
+    /**
+     *  问题总分
+     */
+    private Integer questionScore;
+
+    private QuestionType questionType;
+
+    @Schema(requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+    private Integer isAuto;
+
+
+    /**
      * 构造函数
      * */
-    public QuestionDTO(QuestionType questionType, Integer level) {
-        super(questionType, level);
-    }
     @JsonProperty("qAuto")
     private QAutoBO qAuto;
     @JsonProperty("qOperation")

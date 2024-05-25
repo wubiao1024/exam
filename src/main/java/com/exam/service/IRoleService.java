@@ -1,7 +1,10 @@
 package com.exam.service;
 
+import com.exam.common.Result;
 import com.exam.entity.Role;
 import com.baomidou.mybatisplus.extension.service.IService;
+
+import java.util.List;
 
 /**
  * <p>
@@ -12,5 +15,5 @@ import com.baomidou.mybatisplus.extension.service.IService;
  * @since 2024-04-21
  */
 public interface IRoleService extends IService<Role> {
-
+    Result<?> getRoles();
 }

@@ -1,26 +1,22 @@
 package com.exam.entity;
 
-import com.baomidou.mybatisplus.annotation.*;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.AllArgsConstructor;
+import com.baomidou.mybatisplus.annotation.TableName;
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableId;
+import java.io.Serializable;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
-
-import java.io.Serializable;
 
 /**
  * <p>
- * 学生-答题表
+ * 
  * </p>
  *
  * @author 洛克
- * @since 2024-04-21
+ * @since 2024-05-22
  */
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
 @TableName("student_answer")
@@ -28,30 +24,47 @@ public class StudentAnswer implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
+    /**
+     * 主键
+     */
     @TableId(value = "uid", type = IdType.AUTO)
-    @JsonIgnore
     private Long uid;
 
+    /**
+     * id
+     */
     private Long id;
 
-    private Long userRoleId;
-
-    private Long pqId;
-
-    private Long teacherId;
-
-    private String answer;
-
-    private Integer score;
-
-    private String comment;
-
+    /**
+     * 作答人
+     */
+    private Long studentId;
 
     /**
-     * 0 没有删除 1 删除
+     * 对应哪一次考试
      */
-    @TableField("is_deleted")
-    @TableLogic
+    private Long examRecordId;
+
+    /**
+     * 问题id
+     */
+    private Long questionId;
+
+    /**
+     * 学生答案
+     */
+    private String answer;
+
+    /**
+     * 得分
+     */
+    private Integer score;
+
+    /**
+     * 评语
+     */
+    private String comment;
+
     private Integer isDeleted;
 
 

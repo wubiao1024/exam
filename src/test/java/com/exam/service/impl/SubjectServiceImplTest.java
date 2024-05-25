@@ -1,6 +1,7 @@
 package com.exam.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.exam.entity.Subject;
 import com.exam.mapper.SubjectMapper;
 import jakarta.annotation.Resource;
@@ -20,6 +21,7 @@ class SubjectServiceImplTest {
         wrapper
                 .select(Subject::getId, Subject::getName, Subject::getEnglishName);
         System.out.println(subjectMapper.selectMaps(wrapper));
+        subjectMapper.selectPage(new Page<>(1L, 2L), wrapper);
     }
 
     @Test

@@ -46,6 +46,11 @@ public class Question implements Serializable {
      */
     private QuestionType questionType;
 
+    /**
+     *  问题总分
+     */
+    private Integer questionScore;
+
 
     /**
      * 学科id

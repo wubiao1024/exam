@@ -6,6 +6,7 @@ import java.util.Arrays;
 import java.util.stream.Stream;
 
 public class RequestPathMatchRules {
+    // api 文档相关的路径，一次给他放行
     private static final String[] swagger = {
             "/swagger-ui/**",
             "/swagger-ui/",
@@ -24,12 +25,12 @@ public class RequestPathMatchRules {
     };
     // 没有登录才能访问的api
     @Getter
-    private static String[] anonymous = {};
+    private static final String[] anonymous = {};
     @Getter
-    private static String[] permitAllPath = {"/api/hello", "/api/user/login"};
+    private static final String[] permitAllPath = {"/auth/**","/api/user/login"};
     //无论是否登录都可以访问的api
     @Getter
-    private static String[] permitAll = Stream.concat(Arrays.stream(permitAllPath), Arrays.stream(swagger)).toArray(size -> new String[size]);
+    private static final String[] permitAll = Stream.concat(Arrays.stream(permitAllPath), Arrays.stream(swagger)).toArray(String[]::new);
 
     /**
      * 判断某一个路径是否是 无论是否登录都可以访问的api  anonymous

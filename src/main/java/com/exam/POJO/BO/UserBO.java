@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class UserBO {
+
     private String username;
     /**
      * 密码
@@ -30,6 +31,24 @@ public class UserBO {
      * 头像
      */
     private String avatar;
+    /**
+     * 班级id
+     * */
+    private Long classId;
+    /**
+     * 班级名称
+     * */
+    private String className;
+
+    /**
+     * 性别 gender 0 男 1 女
+     */
+    private Integer gender;
+
+    /**
+     *邮箱 email
+     */
+    private String email;
 
 }
 

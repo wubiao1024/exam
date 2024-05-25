@@ -28,15 +28,15 @@ public class User implements Serializable {
     @TableId(type = IdType.AUTO)
     private Long uid;
     /**
-     *
+     * 用户id
      */
     private Long id;
     /**
-     *
+     * 登录名
      */
     private String username;
     /**
-     *
+     * 密码
      */
 //    @JsonIgnore
     private String password;
@@ -56,6 +56,22 @@ public class User implements Serializable {
      * 头像
      */
     private String avatar;
+
+    /**
+     * 班级id
+     * */
+    private Long classId;
+
+    /**
+     * 性别 gender 0 男 1 女
+     */
+    private Integer gender;
+
+    /**
+     *邮箱 email
+     */
+    private String email;
+
     /**
      * 0 没有删除 1 删除
      */
@@ -74,6 +90,8 @@ public class User implements Serializable {
      * 更新时间
      */
     private Date updateTime;
+
+
 
     @Override
     public boolean equals(Object that) {

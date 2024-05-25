@@ -40,7 +40,14 @@ public class Paper implements Serializable {
 
     private Integer totalScore;
 
-    private String subType;
+    private Long subjectId;
+
+    private String description;
+
+    //    考前须知
+    private String preamble;
+
+    private Integer examDuration;
 
     /**
      * 0 没有删除 1 删除

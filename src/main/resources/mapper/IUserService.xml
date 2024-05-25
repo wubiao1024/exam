@@ -3,28 +3,21 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.exam.mapper.UserMapper">
-
-    <resultMap id="BaseResultMap" type="com.exam.entity.User">
-            <id property="uid" column="uid" jdbcType="BIGINT"/>
-            <result property="id" column="id" jdbcType="BIGINT"/>
-            <result property="username" column="username" jdbcType="VARCHAR"/>
-            <result property="password" column="password" jdbcType="VARCHAR"/>
-            <result property="realName" column="real_name" jdbcType="VARCHAR"/>
-            <result property="nickname" column="nickname" jdbcType="VARCHAR"/>
-            <result property="contactInfo" column="contact_info" jdbcType="VARCHAR"/>
-            <result property="role" column="role" jdbcType="INTEGER"/>
-            <result property="avatar" column="avatar" jdbcType="VARCHAR"/>
-            <result property="isDeleted" column="is_deleted" jdbcType="TINYINT"/>
-            <result property="creatorId" column="creator_id" jdbcType="BIGINT"/>
-            <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
-            <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
-    </resultMap>
-
-    <sql id="Base_Column_List">
-        uid,id,username,
-        password,real_name,nickname,
-        contact_info,role,avatar,
-        is_deleted,creator_id,create_time,
-        update_time
-    </sql>
+    <select id="getPathByUserId" parameterType="Long" resultType="String">
+        select distinct p.path
+        from permit p
+            left join role_permit rp on p.id = rp.permit_id
+            left join user_role ur on rp.role_id = ur.role_id
+            left join exam.role r on ur.role_id = r.id
+        where p.is_deleted = 0 and r.is_deleted = 0 and ur.is_deleted = 0 and ur.user_id = #{userId} and p.type = 'path'
+    </select>
+    <select id="getInterfaceByUserId" resultType="java.lang.String">
+        select distinct p.interface
+        from permit p
+                 left join role_permit rp on p.id = rp.permit_id
+                 left join user_role ur on rp.role_id = ur.role_id
+                 left join exam.role r on ur.role_id = r.id
+        where p.is_deleted = 0 and r.is_deleted = 0 and ur.is_deleted = 0 and ur.user_id = #{userId} and p.type =
+                                                                                                         'interface'
+    </select>
 </mapper>

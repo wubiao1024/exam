@@ -13,10 +13,16 @@ public class QuestionBO {
     /**
      * XZ - 选择 , TK-填空， JD-简答，PD-判断
      */
-    @Schema(name = "问题类型",title = "XZ - 选择 , TK-填空， JD-简答，PD-判断", type = "string")
+    @Schema(title = "XZ - 选择 , TK-填空， JD-简答，PD-判断", type = "string")
     private QuestionType questionType;
     /**
      * 难度
      */
     private Integer level;
+
+    /**
+     *  问题总分
+     */
+    @Schema(title = "问题总分", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+    private Integer questionScore;
 }
